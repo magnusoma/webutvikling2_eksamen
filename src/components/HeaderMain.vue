@@ -5,7 +5,7 @@
     <li class="navbar-brand"><router-link to="/player-page">Våre artister</router-link></li>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Søk etter artist" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Søk</button>
+    <button v-on:click="render-search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Søk</button>
   </form>
 </nav>
 </template>

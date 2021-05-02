@@ -1,4 +1,5 @@
 <template>
+    <filter-artist/>
     <section class="row">
         <article class="col-xs-12 col-sm-8 col-md-6" v-for="(artist, i) in artistList" :key="i">
             <router-link :to="{name: 'ArtistView', params:  {
@@ -17,6 +18,7 @@
 
 import axios from 'axios'
 import {ref} from 'vue'
+import FilterArtist from '/src/components/FilterArtist.vue'
 
 export default {
     setup() {
@@ -27,7 +29,10 @@ export default {
                 console.log(response.data)
             });
         console.log(artistList.value);
-        return {artistList}
+        return {artistList, FilterArtist}
+    },
+    components: {
+        FilterArtist
     }
 }
 </script>
