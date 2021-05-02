@@ -3,21 +3,21 @@ import {createWebHistory, createRouter} from 'vue-router'
 import AdminArtistInfo from '/src/views/AdminArtistInfo.vue'
 import AdminArtistList from '/src/views/AdminArtistList.vue'
 import AdminJobList from '/src/views/AdminJobList.vue'
-import ArtistListView from '/src/views/ArtistListView.vue'
+import HomePageView from '/src/views/HomePageView.vue'
 import ArtistView from '/src/views/ArtistView.vue'
 import JobView from '/src/views/JobView.vue'
 
 
 const routes = [
     {
-        name: "ArtistListView",
+        name: "HomePageView",
         path: "/",
-        component: ArtistListView
+        component: HomePageView
     },
     
     {
         name: "ArtistView",
-        path: "/info",
+        path: "/info/:id/",
         component: ArtistView
     },
     {
