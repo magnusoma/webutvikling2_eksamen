@@ -4,7 +4,7 @@
         </h1>
         <nav>
             <ul>
-                <li><router-link to="/">Legg inn oppdrag</router-link></li>
+                <li><router-link to="/mission">Legg inn oppdrag</router-link></li>
                 <li><router-link to="/player-page">Våre eskorter</router-link></li>
             </ul>
         </nav>
