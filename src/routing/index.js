@@ -22,7 +22,7 @@ const routes = [
     },
     {
         name: "JobView",
-        path: "/jobview",
+        path: "/mission",
         component: JobView
     },
 
