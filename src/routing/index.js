@@ -34,7 +34,7 @@ const routes = [
     
     {
         name: "AdminArtistInfo",
-        path: "/Admin/edit",
+        path: "/Admin/:id",
         component: AdminArtistInfo
     },
     {
