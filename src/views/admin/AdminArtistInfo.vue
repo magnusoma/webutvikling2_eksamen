@@ -14,9 +14,9 @@
 
 <script>
 
-import ArtistItem from '../components/admin/ArtistItem.vue'
+import ArtistItem from '../../components/admin/ArtistItem.vue'
 import { ref } from 'vue'
-import EditArtist from '../components/admin/EditArtist.vue';
+import EditArtist from '../../components/admin/EditArtist.vue';
 
 export default {
     navn: 'ArtistList',

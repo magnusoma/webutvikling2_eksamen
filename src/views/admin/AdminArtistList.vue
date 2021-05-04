@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import AdminNavbar from '../components/admin/AdminNavbar'
-import ArtistList from '../components/admin/ArtistList'
+import AdminNavbar from '../../components/admin/AdminNavbar'
+import ArtistList from '../../components/admin/ArtistList'
 export default {
     setup() {
         
