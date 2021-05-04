@@ -1,16 +1,16 @@
 <template>
-    <article >
-        <artist-item
-            v-for="(artist, i) in artistList" :key="i"
-            :id="artist.artistId"
-            :artistName="artist.artistName"
-            :upVote="artist.upVote"
-            :downVote="artist.downVote"
-            />
+    <artist-item
+        v-for="(artist, i) in artistList" :key="i"
+        :id="artist.artistId"
+        :artistName="artist.artistName"
+        :upVote="artist.upVote"
+        :downVote="artist.downVote"
+        :image="artist.image"
+        />
 </template>
 
 <script>
-import ArtistItem from './ArtistItem.vue';
+import ArtistItem from './ArtistListItem.vue';
 import {ref} from 'vue';
 import axios from 'axios';
 

@@ -6,7 +6,7 @@
         </router-link>
         <p>{{upVote}}</p>
         <p>{{downVote}}</p>
-        <img :src="`https://localhost:5001/images/${image}`">
+        <img :src="`https://localhost:5001/images/artist_images/${image}`">
     </article>
 </template>
 
