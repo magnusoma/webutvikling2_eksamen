@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>Find a Musician</h1>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
       <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
       <li class="navbar-brand"><router-link to="/">Våre artister</router-link></li>
     </nav>
