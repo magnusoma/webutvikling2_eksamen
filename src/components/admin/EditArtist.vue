@@ -33,7 +33,7 @@ import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 
 export default {
-    navn: 'EditArtist',
+    name: 'EditArtist',
     setup() {
         const artistId = useRoute().params.id;
         let data = new FormData();
