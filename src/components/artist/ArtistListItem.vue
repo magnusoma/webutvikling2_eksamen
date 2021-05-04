@@ -1,12 +1,12 @@
 <template>
-    <article>
+    <article class="card col-lg-4 col-mg-6 col-sm-12" style="width: 18rem">
         <router-link :to="{name: 'ArtistView', params:  {
             id: id}}">
         <h3>{{artistName}}</h3>
         </router-link>
         <p>{{upVote}}</p>
         <p>{{downVote}}</p>
-        <img :src="`https://localhost:5001/images/artist_images/${image}`">
+        <img class="artist-image" :src="`https://localhost:5001/images/artist_images/${image}`">
     </article>
 </template>
 
@@ -21,3 +21,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>

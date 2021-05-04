@@ -1,12 +1,16 @@
 <template>
-    <artist-item
-        v-for="(artist, i) in artistList" :key="i"
-        :id="artist.artistId"
-        :artistName="artist.artistName"
-        :upVote="artist.upVote"
-        :downVote="artist.downVote"
-        :image="artist.image"
-        />
+    <section class="container">
+        <div class="row">
+        <artist-item
+            v-for="(artist, i) in artistList" :key="i"
+            :id="artist.artistId"
+            :artistName="artist.artistName"
+            :upVote="artist.upVote"
+            :downVote="artist.downVote"
+            :image="artist.image"
+            />
+        </div>
+    </section>
 </template>
 
 <script>
@@ -28,3 +32,7 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+</style>
