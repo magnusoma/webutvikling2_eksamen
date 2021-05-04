@@ -1,24 +1,26 @@
 <template>
-  <header>
-    <h1>Find a musician</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><router-link to="/">Hjem</router-link></li>
-      <li><router-link to="/admin">Admin</router-link></li>
-    </ul>
-  </nav>
+    <header-main/>
   <main class="container">
     <router-view></router-view>
   </main>
+      <footer-main/>
 </template>
 
 <script>
-
-import'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import HeaderMain from '/src/components/HeaderMain.vue'
+import FooterMain from '/src/components/FooterMain.vue'
 
 export default {
   name: 'App',
+  setup() {
+ 
+   return {}
+  },
+  components: {
+    HeaderMain,
+    FooterMain
+  }
 }
 </script>
 
