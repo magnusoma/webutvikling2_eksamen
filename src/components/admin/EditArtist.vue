@@ -1,11 +1,13 @@
 <template>
     <article>
+        <input type="submit" value="Lagre endringer" v-on:click="updateArtist(), editToggle()">
+        
         <label for="">Artist navn:</label>
         <input type="text" v-model="artist.artistName">
         
         <label for="image-upload">Endre bilde</label>
         <input @change="changeImage" type="file" id="image-upload">
-        <img :src="'https://localhost:5001/images/' + artist.image " :alt="artist.artistName">
+        <img :src="`https://localhost:5001/images/${artist.image}`" :alt="artist.artistName">
 
         <label for="">Pris per time:</label>
         <input type="number" v-model="artist.price">
@@ -21,7 +23,7 @@
         <textarea v-model="artist.bio" cols="30" rows="10"></textarea>
         <p>{{ artist.upVote }}</p>
         <p>{{ artist.downVote }}</p>
-        <input type="submit" value="Lagre endringer" v-on:click="updateArtist">
+        
     </article>
 </template>
 
@@ -51,8 +53,18 @@ export default {
         }
 
         const updateArtist = () => {
-            axios.put("http://localhost:5001/artist", artist.value)
-                .then( () => {
+            const updatedArtist = {
+                artistId: parseInt(artist.value.artistId),
+                artistName: artist.value.artistName,
+                price: parseFloat(artist.value.price),
+                image: artist.value.image,
+                bio: artist.value.bio,
+                upVote: parseInt(artist.value.upVote),
+                downVote: parseInt(artist.value.downVote),
+                instrument: artist.value.instrument
+            }
+            axios.put("https://localhost:5001/artist", updatedArtist)
+                .then( response => {
                     /*axios(
                         {
                             method: "POST",
@@ -61,11 +73,16 @@ export default {
                             config: { headers: { "Content-Type": "multipart/form-data"} }
                         }
                     )*/
+                    artist.value = response.data;
                 })
+            
         }
 
 
         return { artist, changeImage, updateArtist }
+    },
+    props: {
+        editToggle: Function
     }
 }
 </script>

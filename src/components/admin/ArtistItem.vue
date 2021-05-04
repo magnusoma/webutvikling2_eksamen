@@ -1,7 +1,7 @@
 <template>
     <article>
         <h1>{{ artist.artistName }}</h1>
-        <img :src="'https://localhost:5001/images/' + artist.image " :alt="artist.artistName">
+        <img :src="`https://localhost:5001/images/${artist.image}`" :alt="artist.artistName">
         <p>{{ artist.price }}kr</p>
         <p>{{ artist.instrument }}</p>
         <h3>Bio</h3>
@@ -22,15 +22,24 @@ export default {
         const artistId = useRoute().params.id;
         let artist = ref([]);
 
-        axios.get(`https://localhost:5001/artist/${ artistId }`)
+        /*axios.get(`https://localhost:5001/artist/${ artistId }`)
         .then( response => {
             artist.value = response.data;
-        });
+        });*/
 
+        const fetchArtist = () => {
+            axios.get(`https://localhost:5001/artist/${ artistId }`)
+                .then( response => {
+                artist.value = response.data;
+            });
+        }
 
-        return { artist }        
-    
+        return { artist, fetchArtist }
 
+    },
+    beforeCreate(){
+        this.fetchArtist();
+        console.log("Fetched artist");
     }
 }
 </script>
