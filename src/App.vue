@@ -8,8 +8,8 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import HeaderMain from '/src/components/HeaderMain.vue'
-import FooterMain from '/src/components/FooterMain.vue'
+import HeaderMain from '/src/components/shared/HeaderMain.vue'
+import FooterMain from '/src/components/shared/FooterMain.vue'
 
 export default {
   name: 'App',
