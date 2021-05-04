@@ -4,27 +4,28 @@
             <div class="mb-3 row">
                 <div class="col">
                     <label for="first-name-input" class="form-label">Fornavn:</label>
-                    <input v-model="jobInquire.customerFirstName" type="text" class="form-control" id="first-name-input">
+                    <input v-model="jobInquire.customerFirstName" type="text" class="form-control" id="first-name-input" required>
                 </div>
                 <div class="col">
                     <label for="last-name-input" class="form-label">Etternavn:</label>
-                    <input v-model="jobInquire.customerLastName" type="text" class="form-control" id="last-name-input">
+                    <input v-model="jobInquire.customerLastName" type="text" class="form-control" id="last-name-input" required>
                 </div>
             </div>
             <div class="mb-3 row" id="general-info-container">
                 <div class="col">
                     <label for="customer-email-input" class="form-label">Din e-postadresse:</label>
-                    <input v-model="jobInquire.customerEmail" type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp">
+                    <input v-model="jobInquire.customerEmail" type="email" class="form-control" id="customerEmail" aria-describedby="emailHelp" required>
                 </div>
                 <div class="col">
                     <label for="tlf-input" class="form-label">Telefonnummer:</label>
-                    <input v-model="jobInquire.customerTlf" type="text" class="form-control" id="tlf-input">
+                    <input v-model="jobInquire.customerTlf" type="text" class="form-control" id="tlf-input" required>
                 </div>
             </div>
             <div id="genre-eventtype-container" class="row">
                 <div class="col">
                     <label for="genre-select">Type arrangement:</label>
-                    <select v-model="jobInquire.eventType" name="type" id="eventtype-select">
+                    <select v-model="jobInquire.eventType" name="type" id="eventtype-select" required>
+                        <option value="null" disabled>Velg...</option>
                         <option value="Fest">Fest</option>
                         <option value="Pop">Konfirmasjon</option>
                         <option value="Bursdag">Bursdag</option>
@@ -34,7 +35,8 @@
                 </div>
                 <div class="col">
                     <label for="genre-select">Ønsket sjanger:</label>
-                    <select v-model="jobInquire.genre" name="genre" id="genre-select">
+                    <select v-model="jobInquire.genre" name="genre" id="genre-select" required>
+                        <option value="null" disabled>Velg...</option>
                         <option value="Rock">Rock</option>
                         <option value="Pop">Pop</option>
                         <option value="Hip-hop">Hip-Hop</option>
@@ -49,18 +51,18 @@
             <div id="price-date-address-container" class="row">
                 <div class="col">
                     <label for="price-input" class="form-label">Ønsket pris:</label>
-                    <input v-model="jobInquire.price" type="text" class="form-control" id="price-input">
+                    <input v-model="jobInquire.price" type="text" class="form-control" id="price-input" required>
                 </div>
                 <div class="col">
                     <label for="datepicker">Arrangement dato:</label>
-                    <input v-model="jobInquire.date" type="date" id="datepicker">
+                    <input v-model="jobInquire.date" type="date" id="datepicker" required>
                 </div>
                 <div class="col">
                     <label for="job-address">Adresse for arrangement:</label>
-                    <input v-model="jobInquire.jobAddress" type="text" id="job-address">
+                    <input v-model="jobInquire.jobAddress" type="text" id="job-address" required>
                 </div>  
             </div>
-            <input type="button" @click="postInquire" class="btn btn-primary" value="Send inn">
+            <input type="submit" @click="postInquire" class="btn btn-primary" value="Send inn">
             <p>{{jobInquire}}</p>
         </form>
     </section>
@@ -91,9 +93,9 @@ export default {
             customerLastName: "",
             customerTlf: "",
             description: "",
-            genre: "",
+            genre: "null",
             jobAddress: "",
-            eventType: "",
+            eventType: "null",
             price: "",
             date:""
         });

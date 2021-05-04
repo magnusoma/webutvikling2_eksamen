@@ -1,13 +1,11 @@
 <template>
-<h1>Find a Musician</h1>
-    <nav class="navbar navbar-dark bg-dark justify-content-between">
-  <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
-    <li class="navbar-brand"><router-link to="/player-page">Våre artister</router-link></li>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Søk etter artist" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Søk</button>
-  </form>
-</nav>
+  <section>
+    <h1>Find a Musician</h1>
+    <nav class="navbar navbar-dark bg-dark">
+      <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
+      <li class="navbar-brand"><router-link to="/">Våre artister</router-link></li>
+    </nav>
+</section>
 </template>
 
 <script>

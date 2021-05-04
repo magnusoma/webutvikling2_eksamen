@@ -7,8 +7,7 @@
 </template>
 
 <script>
-
-import'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import HeaderMain from '/src/components/HeaderMain.vue'
 import FooterMain from '/src/components/FooterMain.vue'
 
