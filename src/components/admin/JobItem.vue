@@ -7,9 +7,6 @@
         <td>{{lastName + ", " + firstName}}</td>
         <td>{{genre}}</td>
         <td>{{date}}</td>
-        <td class="p-1">
-            <button v-if="!isFinished" type="button" class="btn btn-outline-primary">Fullfør</button>
-        </td>
     </tr>
     <job-item-description
         v-if="showMore" 
@@ -19,10 +16,14 @@
             :tlf="tlf"
             :description="description"
             :genre="genre"
+            :email="email"
             :price="price"
-            :address="jobAddress"
+            :eventType="eventType"
+            :address="address"
             :date="date"
             :isFinished="isFinished"
+            :changeStatus="changeStatus"
+            :deleteJob="deleteJob"
         />
 </template>
 
@@ -40,34 +41,18 @@ export default {
         email: String,
         description: String,
         genre: String,
-        price: Number,
+        price: String,
         eventType: String,
         address: String,
         date: String,
         isFinished: Boolean,
+        changeStatus: Function,
+        deleteJob: Function
     },
     components: {JobItemDescription},
     setup() {
         let showMore = ref(false);
         return {showMore}
-        /*
-        const changeStatus = (status) => {
-            const job = {
-                customerEmail: email,
-                customerFirstName: firstName,
-                customerLastName: lastName,
-                customerTlf: tlf,
-                description: description,
-                genre: genre,
-                jobAddress: "",
-                eventType: "null",
-                price: "",
-                date:"",
-                isFinished: status 
-            } 
-
-        }
-        */
     },
 }
 </script>
