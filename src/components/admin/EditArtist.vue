@@ -7,7 +7,7 @@
         
         <label for="image-upload">Endre bilde</label>
         <input @change="changeImage" type="file" id="image-upload">
-        <img :src="`https://localhost:5001/images/${artist.image}`" :alt="artist.artistName">
+        <img :src="`https://localhost:5001/images/artist_images/${artist.image}`" :alt="artist.artistName">
 
         <label for="">Pris per time:</label>
         <input type="number" v-model="artist.price">

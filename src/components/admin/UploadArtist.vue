@@ -1,16 +1,26 @@
 <template>
     <section>
-        <upload-artist-form/>
+        <i class="fas fa-times" @click="hideUploadArtist"></i>
+        <upload-artist-form
+        :hideUploadArtist="hideUploadArtist"
+        />
     </section>
 </template>
 
 <script>
 import UploadArtistForm from './UploadArtistForm.vue'
 export default {
-  components: { UploadArtistForm },
     name: 'UploadArtist',
     setup() {
-        
+                
     },
+    components: { 
+        UploadArtistForm 
+    },
+    props: {
+        hideUploadArtist: {
+            type: Function
+        }
+    }
 }
 </script>

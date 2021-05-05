@@ -1,9 +1,9 @@
 <template>
-    <form action="">
+    <form>
         <label for="artistName">Artist Name:</label>
         <input type="text" id="artistName" v-model="newArtist.artistName">
 
-        <label for="image-upload">Endre bilde</label>
+        <label for="image-upload">Velg bilde</label>
         <input @change="setImage" type="file" id="image-upload">
 
         <label for="instrument">Instrument</label>
@@ -19,7 +19,7 @@
         <label for="price">Pris per time</label>
         <input type="number" id="price" v-model="newArtist.price">
 
-        <input type="button" value="Legg til" @click="uploadArtist">
+        <input type="button" value="Legg til" @click="uploadArtist(), hideUploadArtist()">
     </form>
 </template>
 
@@ -58,7 +58,7 @@ export default {
                             method: "POST",
                             url: "https://localhost:5001/artist/SaveImage",
                             data: data,
-                            config: { headers: { "Content-Type": "multipart/form-data" } }
+                            config: { headers: { "Content-Type" : "multipart/form-data" } }
                         }
                     )
                 })
@@ -71,7 +71,9 @@ export default {
         }
     },
     props: {
-
+        hideUploadArtist: {
+            type: Function
+        }
     }
 }
 </script>
