@@ -1,14 +1,37 @@
 <template>
-    <td v-if="isFinished"><i class="far fa-check-square fs-3"></i></td>
-    <td v-if="!isFinished"><i class="fas fa-plus-square fs-3"></i></td>
-    <th scope="row">{{id}}</th>
-    <td>{{lastName + ", " + firstName}}</td>
-    <td>{{genre}}</td>
-    <td>{{date}}</td>
-    <td class="p-1"><button type="button" class="btn btn-outline-primary">Se mer</button></td>
+    
+    <tr class="" @click="showMore = !showMore">
+        <td v-if="isFinished"><i class="far fa-check-square fs-3"></i></td>
+        <td v-if="!isFinished"><i class="fas fa-plus-square fs-3"></i></td>
+        <th scope="row">{{id}}</th>
+        <td>{{lastName + ", " + firstName}}</td>
+        <td>{{genre}}</td>
+        <td>{{date}}</td>
+    </tr>
+    <job-item-description
+        v-if="showMore" 
+            :id="id"
+            :firstName="firstName"
+            :lastName="lastName"
+            :tlf="tlf"
+            :description="description"
+            :genre="genre"
+            :email="email"
+            :price="price"
+            :eventType="eventType"
+            :address="address"
+            :date="date"
+            :isFinished="isFinished"
+            :changeStatus="changeStatus"
+            :deleteJob="deleteJob"
+        />
 </template>
 
 <script>
+
+import JobItemDescription from './JobItemDescription.vue';
+import {ref} from 'vue';
+
 export default {
     props: {
         id: Number,
@@ -18,14 +41,18 @@ export default {
         email: String,
         description: String,
         genre: String,
-        price: Number,
+        price: String,
         eventType: String,
         address: String,
         date: String,
         isFinished: Boolean,
+        changeStatus: Function,
+        deleteJob: Function
     },
+    components: {JobItemDescription},
     setup() {
-        
+        let showMore = ref(false);
+        return {showMore}
     },
 }
 </script>

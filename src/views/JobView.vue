@@ -1,15 +1,17 @@
 <template>
+<section class="m-3">
+  <h1>Ønsker du en artist til ditt arrangement?</h1>
+  <p>Fyll ut kontaktskjemaet under og vi vil ta kontakt med deg.</p>
+</section>
 <job-form/>
-<post-success/>
 </template>
 
 <script>
 
 import JobForm from '../components/job_inquire/JobForm.vue';
-import PostSuccess from '../components/job_inquire/PostSuccess.vue';
 
 export default {
-  components: { JobForm, PostSuccess },
+  components: { JobForm },
   }
 
 
