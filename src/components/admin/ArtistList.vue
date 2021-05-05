@@ -1,5 +1,14 @@
 <template>
     <section>
+
+        <input type="button" value="Legg til ny musikker" @click="renderUploadWindow = true">
+
+        <upload-artist
+        v-if="renderUploadWindow"
+        :closeUploadWindow="closeUploadWindow"
+        :uploadArtist="uploadArtist"
+        />
+        
         <!--Popup window to comfirm deleteing artist-->
         <artist-delete-confirmation
         v-if="renderDeleteWindow"
@@ -34,6 +43,7 @@
 import axios from 'axios'
 import { ref, reactive } from 'vue'
 import ArtistListItem from './ArtistListItem.vue'
+import UploadArtist from '../../components/admin/UploadArtist.vue'
 import ArtistDeleteConfirmation from './ArtistDeleteConfirmation'
 
 export default {
@@ -42,15 +52,34 @@ export default {
         let artists = ref([]);
 
         let artistToDelete = reactive({});
+        let renderUploadWindow = ref(false);
         let renderDeleteWindow = ref(false);        
 
         return {
             artists,
+            renderUploadWindow,
             renderDeleteWindow,
             artistToDelete
         }        
     },
     methods: {
+        //Uploading artist and artist image to WebApi
+        uploadArtist(artistObj, imageData) {
+            axios.post( "https://localhost:5001/artist/", artistObj )
+                .then( () => {
+                    axios(
+                        {
+                            method: "POST",
+                            url: "https://localhost:5001/artist/SaveImage",
+                            data: imageData,
+                            config: { headers: { "Content-Type" : "multipart/form-data" } }
+                        }
+                    );
+                    this.closeUploadWindow();
+                    this.renderArtists();
+                })
+        },
+        //Render artists from WebApi
         renderArtists() {
             axios.get("https://localhost:5001/Artist")
                 .then( response => {
@@ -62,11 +91,15 @@ export default {
             this.artistToDelete = this.artists.find( artist => artist.artistId == id );
             this.renderDeleteWindow = true;
         },
+        //Closing upload popup window
+        closeUploadWindow() {
+            this.renderUploadWindow = false;
+        },
         //Closing delete popup window
         closeDeleteWindow() {
             this.renderDeleteWindow = false;
         },
-        //Deleting artist
+        //Deleting artist in WebApi
         deleteArtist(id) {
             axios.delete( `https://localhost:5001/Artist/${id}` )
                 .then( response => {
@@ -82,6 +115,7 @@ export default {
     },
     components: { 
         ArtistListItem,
+        UploadArtist,
         ArtistDeleteConfirmation
     }
 }

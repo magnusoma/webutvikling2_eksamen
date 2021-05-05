@@ -35,7 +35,6 @@ export default {
         openDeleteWindow: {
             type: Function
         }
-
     }
 }
 </script>

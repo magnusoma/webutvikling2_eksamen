@@ -9,9 +9,9 @@
             bg-info
         "
     >
-        <i class="fas fa-times" @click="hideUploadArtist"></i>
+        <i class="fas fa-times" @click="closeUploadWindow"></i>
         <upload-artist-form
-        :hideUploadArtist="hideUploadArtist"
+        :uploadArtist="uploadArtist"
         />
     </section>
 </template>
@@ -27,7 +27,10 @@ export default {
         UploadArtistForm 
     },
     props: {
-        hideUploadArtist: {
+        closeUploadWindow: {
+            type: Function
+        },
+        uploadArtist: {
             type: Function
         }
     }

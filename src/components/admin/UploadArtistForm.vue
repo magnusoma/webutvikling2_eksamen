@@ -19,13 +19,13 @@
         <label for="price">Pris per time</label>
         <input type="number" id="price" v-model="newArtist.price">
 
-        <input type="button" value="Legg til" @click="uploadArtist(), hideUploadArtist()">
+        <!--Calling uploadArtist method passing artist object and image as argument-->
+        <input type="button" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
     </form>
 </template>
 
 <script>
 import { reactive } from 'vue'
-import axios from 'axios'
 
 export default {
     name: 'UploadArtistForm',
@@ -42,36 +42,24 @@ export default {
         
         let data = new FormData();
 
-        //Append image to Form Data object and image name to artist object
-        const setImage = ( e ) => {
-            data.append("file", e.target.files[0]);
-            newArtist.image = e.target.files[0].name;
-            //imageSrc.value = e.target.files[0]
-        }
-
-        //Uploading artist object and artist image to web api
-        const uploadArtist = () => {
-            axios.post( "https://localhost:5001/artist/", newArtist )
-                .then( () => {
-                    axios(
-                        {
-                            method: "POST",
-                            url: "https://localhost:5001/artist/SaveImage",
-                            data: data,
-                            config: { headers: { "Content-Type" : "multipart/form-data" } }
-                        }
-                    )
-                })
-        }
-
         return {
             newArtist,
-            setImage,
-            uploadArtist
+            data
+        }
+    },
+    methods: {
+        //Append image to Form Data object and image name to artist object
+        setImage( e ) {
+            this.data.append("file", e.target.files[0]);
+            this.newArtist.image = e.target.files[0].name;
+        },
+        //Getting form data containing image file
+        getImageData() {
+            return this.data;
         }
     },
     props: {
-        hideUploadArtist: {
+        uploadArtist: {
             type: Function
         }
     }
