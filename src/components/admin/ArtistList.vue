@@ -10,19 +10,22 @@
         :deleteArtist="deleteArtist"
         />
 
-        <ul>
-            <li v-for="artist in artists" :key="artist.artistId">
-                <artist-list-item
-                :artistId="artist.artistId"
-                :artistName="artist.artistName"
-                :price="artist.price"
-                :instrument="artist.instrument"
-                :upVotes="artist.upVote"
-                :downVotes="artist.downVote"
-                :openDeleteWindow="openDeleteWindow"
-                />
-            </li>
-        </ul>
+        <artist-list-item
+        v-for="artist in artists"
+        :key="artist.artistId"
+
+        :artistId="artist.artistId"
+        :artistName="artist.artistName"
+        :price="artist.price"
+        :instrument="artist.instrument"
+        :upVotes="artist.upVote"
+        :downVotes="artist.downVote"
+        :openDeleteWindow="openDeleteWindow"
+        />
+
+        
+                
+           
     </section>
           
 </template>
@@ -39,12 +42,7 @@ export default {
         let artists = ref([]);
 
         let artistToDelete = reactive({});
-        let renderDeleteWindow = ref(false);
-
-        axios.get("https://localhost:5001/Artist")
-        .then( response => {
-            artists.value = response.data;
-        });
+        let renderDeleteWindow = ref(false);        
 
         return {
             artists,
@@ -53,6 +51,12 @@ export default {
         }        
     },
     methods: {
+        renderArtists() {
+            axios.get("https://localhost:5001/Artist")
+                .then( response => {
+                    this.artists = response.data;
+                });
+        },
         //Finding artist to delete and passing values with props when rendering delete popup window
         openDeleteWindow(id) {
             this.artistToDelete = this.artists.find( artist => artist.artistId == id );
@@ -68,7 +72,13 @@ export default {
                 .then( response => {
                     response.data;
                 } )
+                .then( () => {
+                    this.renderArtists();
+                })
         }   
+    },
+    created() {
+        this.renderArtists();
     },
     components: { 
         ArtistListItem,

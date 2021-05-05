@@ -1,5 +1,14 @@
 <template>
-    <section>
+    <section 
+    class=
+        "
+            position-fixed
+            border
+            border-5
+            border-dark
+            bg-info
+        "
+    >
         <i class="fas fa-times" @click="hideUploadArtist"></i>
         <upload-artist-form
         :hideUploadArtist="hideUploadArtist"
