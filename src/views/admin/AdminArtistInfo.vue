@@ -1,7 +1,7 @@
 <template>
     <input 
-        type="button" 
-        class="btn btn-danger" 
+        type="button"
+        :class="editBtnClass" 
         :value="editBtn" 
         v-on:click="editToggle"
     >
@@ -45,6 +45,7 @@ export default {
 
         //Buttons to toggle between editing and viewing artist
         let editBtn = ref("Rediger artist");
+        let editBtnClass = ref("btn btn-dark");
         let editMode = ref(false);        
         
         //Holds artist and image changes
@@ -55,6 +56,7 @@ export default {
         return { 
             editMode,
             editBtn,
+            editBtnClass,
             imageData,
             artistId,
             artist,
@@ -75,6 +77,7 @@ export default {
         editToggle() {
             this.editMode = !this.editMode;
             this.editBtn = this.editMode ? "Forkast endringer" : "Rediger artist";
+            this.editBtnClass = this.editMode ? "btn btn-danger" : "btn btn-dark";
         },
         //Set changed artist values
         setArtistChanges(artistObj) {

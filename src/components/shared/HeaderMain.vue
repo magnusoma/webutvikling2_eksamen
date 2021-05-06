@@ -1,10 +1,9 @@
 <template>
   <section>
     <nav class="navbar navbar-dark bg-dark navbar-light justify-content-between">
-         <h2 class="navbar-brand" href="#">Find<br> a <br>Musician</h2>
-      <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
-      <li class="navbar-brand"><router-link to="/">Våre artister</router-link></li>
-       
+        <h2 class="navbar-brand" href="#">Find<br> a <br>Musician</h2>
+        <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
+        <li class="navbar-brand"><router-link to="/">Våre artister</router-link></li>       
     </nav>
 </section>
 </template>

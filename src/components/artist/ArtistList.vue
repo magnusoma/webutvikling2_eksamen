@@ -35,7 +35,6 @@ export default {
     },
     methods: {
         getArtists(){
-            console.log("Run");
             axios("https://localhost:5001/artist")
                 .then(response => {
                     this.artistList = response.data

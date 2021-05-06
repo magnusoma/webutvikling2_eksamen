@@ -2,7 +2,14 @@
 
     <section>
 
-        <input type="button" value="Legg til ny musikker" @click="renderUploadWindow = true">
+        <input 
+            type="button" 
+            class="btn btn-dark" 
+            value="Legg til ny musikker" 
+            @click="renderUploadWindow = true"
+        >
+
+
         <!--Popup window to upload artist-->
         <upload-artist
         v-if="renderUploadWindow"
@@ -48,7 +55,7 @@ import UploadArtist from '../../components/admin/UploadArtist.vue'
 import ArtistDeleteConfirmation from './ArtistDeleteConfirmation'
 
 export default {
-    navn: 'ArtistList',
+    name: 'ArtistList',
     setup() {
         let artists = ref([]);
 
