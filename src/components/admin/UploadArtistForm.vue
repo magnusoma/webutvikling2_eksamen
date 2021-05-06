@@ -20,7 +20,7 @@
         <input type="number" id="price" v-model="newArtist.price">
 
         <!--Calling uploadArtist method passing artist object and image as argument-->
-        <input type="button" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
+        <input type="button" class="btn btn-dark" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
     </form>
 </template>
 

@@ -1,5 +1,11 @@
 <template>
     <admin-navbar/>
+        <input type="button" class="btn btn-dark" value="Legg til ny musiker" @click="showUploadArtist = true">
+        
+        <upload-artist
+        v-if="showUploadArtist"
+        :hideUploadArtist="hideUploadArtist"
+        />
 
     <artist-list/>
 </template>

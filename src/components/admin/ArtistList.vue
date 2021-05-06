@@ -1,4 +1,5 @@
 <template>
+
     <section>
 
         <input type="button" value="Legg til ny musikker" @click="renderUploadWindow = true">
@@ -36,7 +37,7 @@
                 
            
     </section>
-          
+
 </template>
 
 <script>
