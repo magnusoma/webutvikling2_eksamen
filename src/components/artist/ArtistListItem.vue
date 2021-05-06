@@ -34,13 +34,24 @@ export default {
     },
     methods: {
         upVoteArtist() {
-            this.artist.upVote ++;
-            this.updateArtist(this.artist);
+            //let voteObj = this.getVoteList().find( i => i.artistId == this.artist.artistId);
+            
+            let artistObj = this.artist;
+            artistObj.upVote++;
+            //window.localStorage.setItem('productList', JSON.stringify(voteList));
+            this.updateArtist(artistObj);
         },
         downVoteArtist() {
-            this.artist.downVote ++;
-            this.updateArtist(this.artist);
+            let artistObj = this.artist;
+            artistObj.downVote ++;
+            this.updateArtist(artistObj);
         },
+        /*alreadyVoted() {
+            //let voteList = JSON.parse(localStorage.getItem('voteList')) || [];
+        },
+        getVoteList() {
+            return JSON.parse(localStorage.getItem('voteList')) || [];
+        }*/
         
     }
 }
