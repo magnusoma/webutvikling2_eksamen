@@ -1,8 +1,8 @@
 <template>
-    <div>
-    <ul>
-      <li><router-link to="/admin">Musikkere</router-link></li>
-      <li><router-link to="/admin/job">Oppdrag</router-link></li>
+  <div>
+    <ul class="row">
+      <li class="col"><router-link to="/admin">Musikkere</router-link></li>
+      <li class="col"><router-link to="/admin/job">Oppdrag</router-link></li>
     </ul>
   </div>
 </template>
@@ -17,3 +17,15 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+li {
+  list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+</style>
