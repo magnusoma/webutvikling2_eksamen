@@ -19,7 +19,7 @@
         <label for="price">Pris per time</label>
         <input type="number" id="price" v-model="newArtist.price">
 
-        <input type="button" value="Legg til" @click="uploadArtist(), hideUploadArtist()">
+        <input type="button" class="btn btn-dark" value="Legg til" @click="uploadArtist(), hideUploadArtist()">
     </form>
 </template>
 

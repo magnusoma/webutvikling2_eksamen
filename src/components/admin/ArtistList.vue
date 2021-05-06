@@ -1,4 +1,5 @@
 <template>
+
     <section>
         <!--Popup window to comfirm deleteing artist-->
         <artist-delete-confirmation
@@ -27,7 +28,7 @@
                 
            
     </section>
-          
+
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <input type="button" :value="editBtn" v-on:click="editToggle">
+    <input type="button" class="btn btn-danger" :value="editBtn" v-on:click="editToggle">
     <!--<input type="button" 
     v-if="editMode" value="Lagre endringer" 
     v-on:click="$refs.editArtist.updateArtist">-->

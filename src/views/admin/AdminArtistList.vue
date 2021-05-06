@@ -1,6 +1,6 @@
 <template>
     <admin-navbar/>
-    <input type="button" value="Legg til ny musikker" @click="showUploadArtist = true">
+    <input type="button" class="btn btn-dark" value="Legg til ny musiker" @click="showUploadArtist = true">
     
     <upload-artist
     v-if="showUploadArtist"

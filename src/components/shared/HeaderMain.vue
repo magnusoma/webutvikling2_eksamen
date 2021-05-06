@@ -26,7 +26,6 @@ body{
     padding: 0;
 }
 
-
 ul {
     width: 100%;
     height: 5rem;
