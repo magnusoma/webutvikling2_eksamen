@@ -23,7 +23,7 @@ import axios from 'axios';
 import ArtistSearch from './ArtistSearch.vue';
 
 export default {
-  components: { ArtistItem, ArtistSort },
+  components: { ArtistItem, ArtistSearch },
     setup() {
         let pageLoaded = ref(false);
         const artistList = ref();
