@@ -1,11 +1,9 @@
 <template>
-  <section>
-    <nav class="navbar navbar-dark bg-dark navbar-light justify-content-between">
-        <h2 class="navbar-brand" href="#">Find<br> a <br>Musician</h2>
-        <li class="navbar-brand"><router-link to="/mission">Legg inn oppdrag</router-link></li>
-        <li class="navbar-brand"><router-link to="/">Våre artister</router-link></li>       
+    <nav class="row">
+        <h1 class="col" href="#">Find a <br>Musician</h1>
+        <li class="col"><router-link to="/">Våre artister</router-link></li>
+        <li class="col"><router-link to="/mission">Kontakt oss</router-link></li>
     </nav>
-</section>
 </template>
 
 <script>
@@ -16,35 +14,43 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap');
-h1, h2{
+h1{
     font-family: 'Oleo Script', cursive;
+    font-size: 2em;
+    padding: 10px;
 }
 body{
     margin: 0;
     padding: 0;
 }
 
-ul {
-    width: 100%;
-    height: 5rem;
-    background-color: rgb(0, 0, 0);
-    justify-content: space-around;
-    align-items: center;
-
+nav {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+    background-color: #332C33;
 }
 
 li {
     list-style-type: none;
-       font-family: 'Roboto Condensed', sans-serif;
-    
+    margin: auto;
+    font-family: 'Roboto Condensed', sans-serif; 
 }
-
 
 a {
+    font-size: 2em;
+}
+
+a, h1 {
     text-decoration: none;
     color: rgb(219, 219, 219);
-    margin: 20rem;
-    
 }
+@media only screen and (max-width: 1000px){
+    a, h1 {
+        font-size: 1.3em;
+    }
+}
+
 
 </style>

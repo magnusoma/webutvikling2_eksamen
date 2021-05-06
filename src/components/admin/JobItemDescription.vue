@@ -18,10 +18,12 @@
         <th scope="row">Beskrivelse:</th>
         <td colspan="3">{{description}}</td>
         <td>
-            <button v-if="!isFinished" @click="changeStatus(id)" type="button" class="btn btn-success btn-sm m-1">Fullfør oppgave</button>
+            <button v-if="!isFinished" @click="changeStatus(id)" type="button" class="btn btn-success btn-sm m-1">Fullfør oppdrag</button>
             <button v-if="isFinished" @click="changeStatus(id)" type="button" class="btn btn-warning btn-sm m-1">Fjern "Fullført"</button>
-            <button @click="deleteJobBtn" type="button" id="deleteBtn" class="btn btn-danger btn-sm m-1">Slett oppdrag</button>
-            <button v-if="toggelDeleteBtn" @click="deleteJob(id)" type="button" class="btn btn-dark btn-sm m-1">Slett oppdrag</button>
+            <button @click="deleteJobBtn" type="button" id="deleteBtn" 
+                :class="toggelDeleteBtn ? 'btn btn-warning btn-sm m-1' : 'btn btn-danger btn-sm m-1'">
+                Slett oppdrag</button>
+            <button v-if="toggelDeleteBtn" @click="deleteJob(id)" type="button" class="btn btn-danger btn-sm m-1">Slett oppdrag</button>
         </td>
     </tr>
 </template>

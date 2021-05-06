@@ -1,7 +1,7 @@
 <template>
     <admin-navbar/>
     <section>
-        <h1>Oppgrag</h1>
+        <h1>Oppdrag</h1>
     </section>
     <admin-job-list/>
     

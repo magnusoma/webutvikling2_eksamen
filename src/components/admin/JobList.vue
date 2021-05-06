@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-hover table-bordered">
+    <table v-if="windowLoaded" class="table table-hover table-bordered">
         <thead>
         <tr class="">
             <th scope="col" class="col" @click="sortJob('isFinished')">Status 
@@ -19,7 +19,7 @@
             </th>
         </tr>
         </thead>
-        <tbody v-for="(job, i) in jobList" :key="i">
+        <tbody v-for="job in jobList" :key="job.id">
             <job-item
                 :id="job.id"
                 :firstName="job.customerFirstName"
@@ -55,16 +55,19 @@ export default {
         let jobList = ref([]);
         let jobToUpdate = reactive({});
         let activeSort = ref("id");
+        let windowLoaded = ref(false);
 
-        axios("https://localhost:5001/job")
-            .then(response => {
-                jobList.value = response.data;
-            });
-
-        return {jobList, jobToUpdate, activeSort}
+        return {jobList, jobToUpdate, activeSort, windowLoaded}
     },
     
     methods: {
+        renderJobs() {
+            axios("https://localhost:5001/job")
+            .then(response => {
+                this.jobList = response.data;
+            });
+        },
+
         sortJob(sort) {
             this.activeSort = sort;
             switch(sort) {
@@ -95,9 +98,20 @@ export default {
             axios.put("https://localhost:5001/job", this.jobToUpdate);
         },
         deleteJob(id) {
-            axios.delete(`https://localhost:5001/job/${id}`);
+            axios.delete(`https://localhost:5001/job/${id}`)
+                .then(response => {
+                    response;
+                })
+                .then( () => {
+                    this.renderJobs();
+                })
         }
-    }
+    },
+    created() {
+        this.renderJobs();
+        this.windowLoaded = true;
+    },
+
 
 }
 </script>
