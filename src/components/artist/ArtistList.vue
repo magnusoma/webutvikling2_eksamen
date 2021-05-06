@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <div class="row">
-        <artist-item
+        <artist-list-item
             v-for="artist in artistList" 
             :key="artist.artistId"
 
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import ArtistItem from './ArtistListItem.vue';
+import ArtistListItem from './ArtistListItem.vue';
 import {ref} from 'vue';
 import axios from 'axios';
 
 export default {
-  components: { ArtistItem },
+  components: { ArtistListItem },
     setup() {
         const artistList = ref();
         axios("https://localhost:5001/artist")
