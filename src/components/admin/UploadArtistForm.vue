@@ -1,12 +1,12 @@
 <template>
     <form>
-        <label for="artistName">Artist Name:</label>
+        <label for="artistName">Artist Name </label>
         <input type="text" id="artistName" v-model="newArtist.artistName">
 
         <label for="image-upload">Velg bilde</label>
         <input @change="setImage" type="file" id="image-upload">
 
-        <label for="instrument">Instrument</label>
+        <label for="instrument">Instrument </label>
         <select id="instrument" v-model="newArtist.instrument">
             <option value="Vokalist">Vokalist</option>
             <option value="Gitarist">Gitarist</option>
@@ -20,7 +20,7 @@
         <input type="number" id="price" v-model="newArtist.price">
 
         <!--Calling uploadArtist method passing artist object and image as argument-->
-        <input type="button" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
+        <input type="button" class="btn btn-dark" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
     </form>
 </template>
 

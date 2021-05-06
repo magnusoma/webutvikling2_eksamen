@@ -1,5 +1,10 @@
 <template>
     <admin-navbar/>
+        
+        <upload-artist
+        v-if="showUploadArtist"
+        :hideUploadArtist="hideUploadArtist"
+        />
 
     <artist-list/>
 </template>

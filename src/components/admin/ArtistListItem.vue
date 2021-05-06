@@ -6,7 +6,7 @@
         <p>{{ upVotes }}</p>
         <p>{{ downVotes }}</p>
         <!--Delete button to open confirmation window and passing artistId as argument-->
-        <input type="button" value="Slett Musikker" @click="openDeleteWindow(artistId)">
+        <input type="button" class="btn btn-dark" value="Slett Musikker" @click="openDeleteWindow(artistId)">
     </article>
 </template>
 
@@ -38,3 +38,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+p{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+</style>

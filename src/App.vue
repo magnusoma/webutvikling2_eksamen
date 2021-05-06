@@ -1,6 +1,6 @@
 <template>
     <header-main/>
-  <main class="container">
+  <main>
     <router-view></router-view>
   </main>
       <footer-main/>
@@ -31,6 +31,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
 }
 </style>

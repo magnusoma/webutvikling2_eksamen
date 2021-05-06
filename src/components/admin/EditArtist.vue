@@ -1,56 +1,60 @@
 <template>
-    <article v-if="artistIsInitialized">        
-        <label for="artistName">Artist navn:</label>
-        <input 
-            id="artistName"
-            type="text" 
-            v-model="artist.artistName" 
-            @change="setArtistChanges(artist)"
-        >
-        
-        <label for="image-upload">Endre bilde</label>
-        <input 
-            id="image-upload" 
-            type="file" 
-            @change="
-                changeImage($event), 
-                setNewImage( getImageData() )
-            "
-        >
+    <article v-if="artistIsInitialized">
+        <div class="container">
+            <div class="row p-1 justify-content-center">
+                <div class="col-4 p-1 ">
+                    <img class="w-100 p-1" style="right: 0;" :src="`https://localhost:5001/images/artist_images/${artist.image}`" :alt="artist.artistName">
+                    <label for="image-upload">Endre bilde: </label>
+                <input 
+                    id="image-upload"
+                    type="file"
+                    @change="
+                        changeImage($event),
+                        setNewImage( getImageData() )
+                    "
+                >
+                </div>
+                <div class="col-4 p-3">
+                    <div class="form-group row">
+                        <div class="col-auto p-3">
+                            <label for="artistName">Artist navn:</label>
+                            <input 
+                                type="text" 
+                                id="artistName"
+                                class="form-control" 
+                                v-model="artist.artistName"
+                                @change="setArtistChanges(artist)"
+                            >
 
-        <img :src="`https://localhost:5001/images/artist_images/${artist.image}`" :alt="artist.artistName">
-
-        <label for="price">Pris per time:</label>
-        <input
-            id="price" 
-            type="number" 
-            v-model="artist.price" 
-            @change="setArtistChanges(artist)"
-        >
-
-        <label for="instrument">Spiller:</label>
-        <select
-            id="instrument" 
-            v-model="artist.instrument"
-            @change="setArtistChanges(artist)"
-        >
-            <option value="Vokalist">Vokalist</option>
-            <option value="Gitarist">Gitarist</option>
-            <option value="Pianoist">Pianoist</option>
-        </select>
-
-        <label for="bio">Bio</label>
-        <textarea
-            id="bio" 
-            cols="30" 
-            rows="10"
-            v-model="artist.bio"
-            @change="setArtistChanges(artist)"
-        />
-        <p>{{ artist.upVote }}</p>
-        <p>{{ artist.downVote }}</p>
-        
-    </article>
+                            <label for="price">Pris per time:</label>
+                            <input 
+                                id="price"
+                                type="number"
+                                class="form-control" 
+                                v-model="artist.price"
+                                @change="setArtistChanges(artist)"
+                            >
+                        </div>
+                    </div>
+                    <label for="instrument">Spiller:</label>
+                    <select
+                        id="instrument"
+                        class="btn btn-secondary dropdown-toggle"
+                        v-model="artist.instrument"
+                        @change="setArtistChanges(artist)"
+                    >
+                        <option value="Vokalist">Vokalist</option>
+                        <option value="Gitarist">Gitarist</option>
+                        <option value="Pianoist">Pianist</option>
+                        <option value="DJ">DJ</option>
+                    </select>
+                    <h3>Bio</h3>
+                    <textarea v-model="artist.bio" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            
+        </div>   
+    </article>  
 </template>
 
 <script>
@@ -108,3 +112,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: left;
+}
+
+</style>
