@@ -1,14 +1,22 @@
 <template>
-    <input type="button" @click="sortJob('isFinished')">
-    <input type="button" @click="sortJob('genre')">
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered">
         <thead>
         <tr class="">
-            <th scope="col" @click="sortJob('isFinished')">Status</th>
-            <th scope="col">#</th>
-            <th scope="col" @click="sortJob('name')">Navn</th>
-            <th scope="col">Sjanger</th>
-            <th scope="col">Dato</th>
+            <th scope="col" class="col" @click="sortJob('isFinished')">Status 
+                <i v-if="activeSort == 'isFinished'" class="fas fa-angle-up"></i>
+            </th>
+            <th scope="col" class="col" @click="sortJob('id')">#
+                <i v-if="activeSort == 'id'" class="fas fa-angle-up"></i>
+            </th>
+            <th scope="col" class="col" @click="sortJob('name')" id="name">Navn
+                <i v-if="activeSort == 'name'" class="fas fa-angle-up"></i>
+            </th>
+            <th scope="col" class="col" @click="sortJob('genre')">Sjanger
+                <i v-if="activeSort == 'genre'" class="fas fa-angle-up"></i>
+            </th>
+            <th scope="col" class="col" @click="sortJob('date')">Dato
+                <i v-if="activeSort == 'date'" class="fas fa-angle-up"></i>
+            </th>
         </tr>
         </thead>
         <tbody v-for="(job, i) in jobList" :key="i">
@@ -46,17 +54,19 @@ export default {
     setup() {
         let jobList = ref([]);
         let jobToUpdate = reactive({});
+        let activeSort = ref("id");
 
         axios("https://localhost:5001/job")
             .then(response => {
                 jobList.value = response.data;
             });
 
-        return {jobList, jobToUpdate}
+        return {jobList, jobToUpdate, activeSort}
     },
     
     methods: {
         sortJob(sort) {
+            this.activeSort = sort;
             switch(sort) {
                 case "isFinished":                  
                     this.jobList.sort((a,b) => new Date(a.date) < new Date(b.date) ? 1 : -1)
@@ -64,13 +74,21 @@ export default {
                     break;
                 case "name":
                     this.jobList.sort((a,b) => new Date(a.date) < new Date(b.date) ? 1 : -1)
-                    this.jobList.sort(
-                        (a,b) => a.customerLastName.localeCompare(b.customerLastName)
-                    );
+                    this.jobList.sort((a,b) => a.customerLastName.localeCompare(b.customerLastName));
+                    break;
+                case "id":
+                    this.jobList.sort((a,b) => a.id > b.id ? 1 : -1);
+                    break;
+                case "genre":
+                    this.jobList.sort((a,b) => a.genre.localeCompare(b.genre));
+                    break;
+                case "date":
+                    this.jobList.sort((a,b) => new Date(a.date) < new Date(b.date) ? 1 : -1);
+                    break;
             }
+
         },
-//return reviewList.sort((a,b) => a.reviewStars < b.reviewStars ? 1 : -1);
-//reviewList.sort( (a,b) => new Date(b.reviewDate) - new Date(a.reviewDate));
+
         changeStatus(id) {
             this.jobToUpdate = this.jobList.find(job => job.id == id);
             this.jobToUpdate.isFinished = !this.jobToUpdate.isFinished;
@@ -83,3 +101,10 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.col:hover {
+    background-color: #f5f5f5;;
+    cursor: pointer;
+}
+</style>
