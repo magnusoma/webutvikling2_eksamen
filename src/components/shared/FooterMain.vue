@@ -8,7 +8,7 @@
             </section>
             <section>
               <h4>Adresse</h4>
-              <p>Morra di veien 10</p>
+              <p>Munkedamsveien 32, 0270 Oslo</p>
             </section>
         </footer>
     </section>
