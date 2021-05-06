@@ -2,7 +2,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-lg-8 col-md-12">
-                <div class="input-group flex-nowrap" @keyup.enter="searchArtist(searchInput)">
+                <div class="input-group flex-nowrap m-1" @keyup.enter="searchArtist(searchInput)">
                     <span class="input-group-text" id="addon-wrapping">Søk etter artist:</span>
                     <input type="text" class="form-control" v-model="searchInput" placeholder="Navn" aria-label="Navn" aria-describedby="addon-wrapping">
                     <button class="btn btn-outline-secondary" type="button" @click="searchArtist(searchInput)" id="button-addon2"><i class="fas fa-search"></i></button>
@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
-                <div class="input-group flex-nowrap">
+                <div class="input-group flex-nowrap m-1">
                     <span class="input-group-text" id="addon-wrapping">Instrument:</span>
                     <select class="form-select" v-model="selectedFilter" @change="setFilter(selectedFilter)" aria-label="Default select example">
                         <option selected value="all">Alle</option>
@@ -37,7 +37,7 @@ export default {
     },
     setup() {
         let searchInput = ref();
-        let selectedFilter = ref();
+        let selectedFilter = ref("all");
 
         return {searchInput, selectedFilter}
     }

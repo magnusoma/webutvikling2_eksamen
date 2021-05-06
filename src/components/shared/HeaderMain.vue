@@ -7,7 +7,6 @@
        
     </nav>
 </section>
-<h1 id="title">Find a Musician</h1>
 </template>
 
 <script>
