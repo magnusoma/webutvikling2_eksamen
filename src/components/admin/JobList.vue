@@ -1,10 +1,12 @@
 <template>
+    <input type="button" @click="sortJob('isFinished')">
+    <input type="button" @click="sortJob('genre')">
     <table class="table table-hover">
         <thead>
         <tr class="">
-            <th scope="col">Status</th>
+            <th scope="col" @click="sortJob('isFinished')">Status</th>
             <th scope="col">#</th>
-            <th scope="col">Navn</th>
+            <th scope="col" @click="sortJob('name')">Navn</th>
             <th scope="col">Sjanger</th>
             <th scope="col">Dato</th>
         </tr>
@@ -54,6 +56,21 @@ export default {
     },
     
     methods: {
+        sortJob(sort) {
+            switch(sort) {
+                case "isFinished":                  
+                    this.jobList.sort((a,b) => new Date(a.date) < new Date(b.date) ? 1 : -1)
+                    this.jobList.sort(((a,b) => a.isFinished < b.isFinished ? 1 : -1));
+                    break;
+                case "name":
+                    this.jobList.sort((a,b) => new Date(a.date) < new Date(b.date) ? 1 : -1)
+                    this.jobList.sort(
+                        (a,b) => a.customerLastName.localeCompare(b.customerLastName)
+                    );
+            }
+        },
+//return reviewList.sort((a,b) => a.reviewStars < b.reviewStars ? 1 : -1);
+//reviewList.sort( (a,b) => new Date(b.reviewDate) - new Date(a.reviewDate));
         changeStatus(id) {
             this.jobToUpdate = this.jobList.find(job => job.id == id);
             this.jobToUpdate.isFinished = !this.jobToUpdate.isFinished;
