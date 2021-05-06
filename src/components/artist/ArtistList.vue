@@ -1,5 +1,8 @@
 <template>
-    <section class="container">
+    <artist-search
+        :searchArtist="searchArtist"
+    />
+    <section v-if="pageLoaded" class="container">
         <div class="row">
         <artist-item
             v-for="(artist, i) in artistList" :key="i"
@@ -17,18 +20,34 @@
 import ArtistItem from './ArtistListItem.vue';
 import {ref} from 'vue';
 import axios from 'axios';
+import ArtistSearch from './ArtistSearch.vue';
 
 export default {
-  components: { ArtistItem },
+  components: { ArtistItem, ArtistSort },
     setup() {
+        let pageLoaded = ref(false);
         const artistList = ref();
-        axios("https://localhost:5001/artist")
-            .then(response => {
-                artistList.value = response.data
-                console.log(response.data)
-            });
         console.log(artistList.value);
-        return {artistList}
+        return {artistList, pageLoaded}
+    },
+    methods: {
+        getArtist(){
+            axios("https://localhost:5001/artist")
+                .then(response => {
+                    this.artistList = response.data
+            });
+        },
+
+        searchArtist(input) {
+            axios(`https://localhost:5001/artist/getbyname/${input}`)
+                .then(response => {
+                    this.artistList = response.data;
+                })
+        },
+    },
+    created() {
+            this.getArtist()
+            this.pageLoaded = true;
     },
 }
 </script>
