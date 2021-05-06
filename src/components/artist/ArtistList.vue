@@ -2,12 +2,11 @@
     <section class="container">
         <div class="row">
         <artist-item
-            v-for="(artist, i) in artistList" :key="i"
-            :id="artist.artistId"
-            :artistName="artist.artistName"
-            :upVote="artist.upVote"
-            :downVote="artist.downVote"
-            :image="artist.image"
+            v-for="artist in artistList" 
+            :key="artist.artistId"
+
+            :artist="artist"
+            :updateArtist="updateArtist"
             />
         </div>
     </section>
@@ -25,11 +24,17 @@ export default {
         axios("https://localhost:5001/artist")
             .then(response => {
                 artistList.value = response.data
-                console.log(response.data)
-            });
-        console.log(artistList.value);
+            })
         return {artistList}
     },
+    methods: {
+        updateArtist(artistObj) {
+            axios.put("https://localhost:5001/artist", artistObj)
+                .then( response => {
+                    artistObj = response.data;
+                })
+        }
+    }
 }
 </script>
 
