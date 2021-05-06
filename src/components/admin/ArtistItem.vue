@@ -12,34 +12,12 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
-
 export default {
-    navn: 'ArtistItem',
-    setup() {
-        const artistId = useRoute().params.id;
-        let artist = ref([]);
-
-        /*axios.get(`https://localhost:5001/artist/${ artistId }`)
-        .then( response => {
-            artist.value = response.data;
-        });*/
-
-        const fetchArtist = () => {
-            axios.get(`https://localhost:5001/artist/${ artistId }`)
-                .then( response => {
-                artist.value = response.data;
-            });
+    name: 'ArtistItem',
+    props: {
+        artist: {
+            type: Object
         }
-
-        return { artist, fetchArtist }
-
-    },
-    beforeCreate(){
-        this.fetchArtist();
-        console.log("Fetched artist");
     }
 }
 </script>

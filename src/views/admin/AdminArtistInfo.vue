@@ -1,38 +1,105 @@
 <template>
     <input type="button" :value="editBtn" v-on:click="editToggle">
-    <!--<input type="button" 
+    <input type="button" 
     v-if="editMode" value="Lagre endringer" 
-    v-on:click="$refs.editArtist.updateArtist">-->
+    v-on:click="updateArtist">
 
+    <!--View artist in detail-->
+    <artist-item 
+        v-if="!editMode && artistIsInitialized"
+        :key="artist.artistId"
+        :artist="artist"        
+    />
 
-    <artist-item v-if="!editMode"/>
-    <edit-artist 
-    :editToggle="editToggle"
-    v-if="editMode"
+    <!--Component for editing artist-->
+    <edit-artist
+        v-if="editMode"
+        :setArtistChanges="setArtistChanges"
+        :setNewImage="setNewImage"
     />
 </template>
 
 <script>
 
+import { ref, reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import axios from 'axios'
 import ArtistItem from '../../components/admin/ArtistItem.vue'
-import { ref } from 'vue'
 import EditArtist from '../../components/admin/EditArtist.vue';
 
 export default {
-    navn: 'ArtistList',
+    name: 'AdminArtistInfo',
     setup() {
+        const artistId = useRoute().params.id;
+        let artist = reactive({});
+        let artistIsInitialized  = ref(false);
 
+        //Buttons to toggle between editing and viewing artist
         let editBtn = ref("Rediger artist");
-        let editMode = ref(false);
-
-        const editToggle = () => {
-            editMode.value = !editMode.value;
-            editBtn.value = editMode.value ? "Forkast endringer" : "Rediger artist";
-        }
-
+        let editMode = ref(false);        
+        
+        //Holds artist and image changes
+        let updatedArtist = reactive({});
+        let imageData = ref();
         
 
-        return { editMode, editBtn, editToggle }        
+        return { 
+            editMode,
+            editBtn,
+            imageData,
+            artistId,
+            artist,
+            updatedArtist,
+            artistIsInitialized
+            }        
+    },
+    methods: {
+        //Get artist from WebApi
+        getArtist() {
+            axios.get(`https://localhost:5001/artist/${ this.artistId }`)
+                .then( response => {
+                this.artist = response.data;
+                this.artistIsInitialized = true;
+                });
+        },
+        //Toggle between editing and viewing artist
+        editToggle() {
+            this.editMode = !this.editMode;
+            this.editBtn = this.editMode ? "Forkast endringer" : "Rediger artist";
+        },
+        //Set changed artist values
+        setArtistChanges(artistObj) {
+            this.updatedArtist = artistObj;
+        },
+        //Set new image
+        setNewImage(image) {
+            this.imageData = image;
+            console.log(this.imageData);
+        },
+        //Updateing artist in WebApi
+        updateArtist() {
+            axios.put("https://localhost:5001/artist", this.updatedArtist)
+                .then( response => {
+                    this.artist = response.data;
+                })
+                .then( () => {
+                    //Updating artist image
+                    if(this.imageData){
+                        axios(
+                            {
+                                method: "POST",
+                                url: "http://localhost:5001/SaveImage",
+                                data: this.imageData,
+                                config: { headers: { "Content-Type" : "multipart/form-data"} }
+                            }
+                        )
+                    }
+                    this.editToggle();
+                })
+        }
+    },
+    created() {
+        this.getArtist();
     },
     components: { 
         ArtistItem,

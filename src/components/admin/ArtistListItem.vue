@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    navn: 'ArtistListItem',
+    name: 'ArtistListItem',
     props: {
         artistId: {
             type: Number

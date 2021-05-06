@@ -1,26 +1,52 @@
 <template>
-    <article>
-        <input type="submit" value="Lagre endringer" v-on:click="updateArtist(), editToggle()">
-        
-        <label for="">Artist navn:</label>
-        <input type="text" v-model="artist.artistName">
+    <article v-if="artistIsInitialized">        
+        <label for="artistName">Artist navn:</label>
+        <input 
+            id="artistName"
+            type="text" 
+            v-model="artist.artistName" 
+            @change="setArtistChanges(artist)"
+        >
         
         <label for="image-upload">Endre bilde</label>
-        <input @change="changeImage" type="file" id="image-upload">
+        <input 
+            id="image-upload" 
+            type="file" 
+            @change="
+                changeImage($event), 
+                setNewImage( getImageData() )
+            "
+        >
+
         <img :src="`https://localhost:5001/images/artist_images/${artist.image}`" :alt="artist.artistName">
 
-        <label for="">Pris per time:</label>
-        <input type="number" v-model="artist.price">
+        <label for="price">Pris per time:</label>
+        <input
+            id="price" 
+            type="number" 
+            v-model="artist.price" 
+            @change="setArtistChanges(artist)"
+        >
 
-        <label for="">Spiller:</label>
-        <select v-model="artist.instrument">
+        <label for="instrument">Spiller:</label>
+        <select
+            id="instrument" 
+            v-model="artist.instrument"
+            @change="setArtistChanges(artist)"
+        >
             <option value="Vokalist">Vokalist</option>
             <option value="Gitarist">Gitarist</option>
             <option value="Pianoist">Pianoist</option>
         </select>
 
-        <h3>Bio</h3>
-        <textarea v-model="artist.bio" cols="30" rows="10"></textarea>
+        <label for="bio">Bio</label>
+        <textarea
+            id="bio" 
+            cols="30" 
+            rows="10"
+            v-model="artist.bio"
+            @change="setArtistChanges(artist)"
+        />
         <p>{{ artist.upVote }}</p>
         <p>{{ artist.downVote }}</p>
         
@@ -28,61 +54,57 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import axios from 'axios'
 
 export default {
     name: 'EditArtist',
     setup() {
-        const artistId = useRoute().params.id;
+        //Holds image file
         let data = new FormData();
-        let imageSrc = ref();
-        let artist = ref([]);
+        
+        let artist = reactive({});
+        let artistIsInitialized = ref(false);
 
-        axios.get(`https://localhost:5001/artist/${ artistId }`)
-            .then( response => {
-                artist.value = response.data;
-            });
-
-        const changeImage = ( e ) => {
-            data.append("file", e.target.files[0]);
-            artist.value.image = e.target.files[0].name;
-            imageSrc.value = e.target.files[0]
-            console.log(artist.value);
-        }
-
-        const updateArtist = () => {
-            const updatedArtist = {
-                artistId: parseInt(artist.value.artistId),
-                artistName: artist.value.artistName,
-                price: parseFloat(artist.value.price),
-                image: artist.value.image,
-                bio: artist.value.bio,
-                upVote: parseInt(artist.value.upVote),
-                downVote: parseInt(artist.value.downVote),
-                instrument: artist.value.instrument
+        return { 
+            data,
+            artist,
+            artistIsInitialized
             }
-            axios.put("https://localhost:5001/artist", updatedArtist)
+    },
+    methods: {
+        //Get artist from WebApi
+        getArtist() {
+            axios.get(`https://localhost:5001/artist/${ useRoute().params.id }`)
                 .then( response => {
-                    /*axios(
-                        {
-                            method: "POST",
-                            url: "http://localhost:5001/SaveImage",
-                            data: data,
-                            config: { headers: { "Content-Type": "multipart/form-data"} }
-                        }
-                    )*/
-                    artist.value = response.data;
-                })
-            
+                this.artist = response.data;
+                this.artistIsInitialized = true;
+                });
+        },
+        //Append image to data if image changes
+        changeImage ( e ) {
+            this.data.append("file", e.target.files[0]);
+            this.artist.image = e.target.files[0].name;
+            console.log(this.data);
+        },
+        //Returns data
+        getImageData() {
+            return this.data;
         }
-
-
-        return { artist, changeImage, updateArtist }
+    },
+    created() {
+        this.getArtist();
     },
     props: {
-        editToggle: Function
+        //Sending artist to parent on change
+        setArtistChanges: {
+            type: Function
+        },
+        //Sending image file to parent on change
+        setNewImage: {
+            type: Function
+        }
     }
 }
 </script>

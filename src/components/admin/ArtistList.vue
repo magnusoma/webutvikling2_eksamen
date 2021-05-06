@@ -2,14 +2,14 @@
     <section>
 
         <input type="button" value="Legg til ny musikker" @click="renderUploadWindow = true">
-
+        <!--Popup window to upload artist-->
         <upload-artist
         v-if="renderUploadWindow"
         :closeUploadWindow="closeUploadWindow"
         :uploadArtist="uploadArtist"
         />
         
-        <!--Popup window to comfirm deleteing artist-->
+        <!--Popup window to comfirm deleting artist-->
         <artist-delete-confirmation
         v-if="renderDeleteWindow"
 
