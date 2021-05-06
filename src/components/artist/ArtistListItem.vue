@@ -52,6 +52,11 @@ export default {
                 case false:
                     artistObj.upVote++;
                     voteObj.alreadyUpVoted = true;
+                    //Removing existing dislike
+                    if(voteObj.alreadyDownVoted){
+                        artistObj.downVote--;
+                        voteObj.alreadyDownVoted = false;
+                    }
                     break;
                 case true:
                     artistObj.upVote--;
@@ -59,13 +64,7 @@ export default {
                     break;
                 default:
                     console.log(voteObj.alreadyUpVoted);
-            }
-
-            //Removing dislike
-            if(voteObj.alreadyDownVoted){
-                artistObj.downVote--;
-                voteObj.alreadyDownVoted = false;
-            }
+            }            
             
             this.setVoteObj(voteObj);
             this.updateArtist(artistObj);
@@ -82,6 +81,11 @@ export default {
                 case false:
                     artistObj.downVote++;
                     voteObj.alreadyDownVoted = true;
+                    //Remove existing like
+                    if(voteObj.alreadyUpVoted){
+                        artistObj.upVote--;
+                        voteObj.alreadyUpVoted = false;
+                    }
                     break;
                 case true:
                     artistObj.downVote--;
@@ -89,12 +93,6 @@ export default {
                     break;
                 default:
                     console.log(voteObj.alreadyDownVoted);
-            }
-
-            //Removing like
-            if(voteObj.alreadyUpVoted){
-                artistObj.upVote--;
-                voteObj.alreadyupVoted = false;
             }
             
             this.setVoteObj(voteObj);
