@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row p-1 justify-content-center">
                 <div class="col-4 p-1 ">
-                    <img class="w-100 p-1" style="right: 0;" :src="`https://localhost:5001/images/artist_images/${artist.image}`" :alt="artist.artistName">
+                    <img class="w-100 p-1" style="right: 0;" :src="imgSrc" :alt="artist.artistName">
                     <label for="image-upload">Endre bilde: </label>
                 <input 
                     id="image-upload"
@@ -67,12 +67,14 @@ export default {
     setup() {
         //Holds image file
         let data = new FormData();
+        let imgSrc = ref();
         
         let artist = reactive({});
         let artistIsInitialized = ref(false);
 
         return { 
             data,
+            imgSrc,
             artist,
             artistIsInitialized
             }
@@ -83,12 +85,14 @@ export default {
             axios.get(`https://localhost:5001/artist/${ useRoute().params.id }`)
                 .then( response => {
                 this.artist = response.data;
+                this.imgSrc = `https://localhost:5001/images/artist_images/${this.artist.image}`;
                 this.artistIsInitialized = true;
                 });
         },
         //Append image to data if image changes
         changeImage ( e ) {
             this.data.append("file", e.target.files[0]);
+            this.imgSrc = URL.createObjectURL(e.target.files[0]);
             this.artist.image = e.target.files[0].name;
             console.log(this.data);
         },
