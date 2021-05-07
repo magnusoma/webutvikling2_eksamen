@@ -1,18 +1,18 @@
 <template>
-    <form>
+    <form @submit.prevent="uploadArtist( newArtist, getImageData() )">
         <div class="form-group">
-        <label for="artistName">Artist navn: </label>
-        <input class="form-control m-2" type="text" id="artistName" v-model="newArtist.artistName">
+            <label for="artistName">Artist navn: </label>
+            <input class="form-control m-2" type="text" id="artistName" v-model="newArtist.artistName" required>
         </div>
 
         <div class="form-group">
-        <label for="image-upload">Velg bilde:</label>
-        <input @change="setImage" type="file" id="image-upload">
+            <label for="image-upload">Velg bilde:</label>
+            <input @change="setImage" type="file" id="image-upload" required>
         </div>
         
         <div class="form-group">
         <label for="instrument">Instrument: </label>
-        <select class="btn btn-primary dropdown-toggle m-2" id="instrument" v-model="newArtist.instrument">
+        <select class="btn btn-primary dropdown-toggle m-2" id="instrument" v-model="newArtist.instrument" required>
             <option value="Vokalist">Vokalist</option>
             <option value="Gitarist">Gitarist</option>
             <option value="Pianist">Pianist</option>
@@ -25,18 +25,16 @@
         </div>
         
         <div class="form-group">
-        <label for="bio">Biografi:</label>
-        <textarea class="form-control m-2" id="bio" cols="30" rows="10" v-model="newArtist.bio"></textarea>
+            <label for="bio">Biografi:</label>
+            <textarea class="form-control m-2" id="bio" cols="30" rows="10" v-model="newArtist.bio" required></textarea>
         </div>
         
         <div class="form-group">
-        <label for="price">Pris per time:</label>
-        <input class="form-control m-2" type="number" id="price" v-model="newArtist.price">
-        <!--Calling uploadArtist method passing artist object and image as argument-->
-        <input type="button" class="btn btn-primary m-2" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
+            <label for="price">Pris per time:</label>
+            <input class="form-control m-2" type="number" id="price" v-model="newArtist.price" required>
+            <!--Calling uploadArtist method passing artist object and image as argument-->
+            <input type="submit" class="btn btn-primary m-2" value="Legg til">
         </div>
-        
-        
     </form>
 </template>
 
