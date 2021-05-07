@@ -2,13 +2,13 @@
     <!--https://getbootstrap.com/docs/5.0/components/carousel/#with-controls -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active" data-bs-interval="3000">
           <img :src="`https://localhost:5001/images/banners/astrid-banner.jpg`" class="d-block w-100" alt="banner">
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" data-bs-interval="3000">
           <img :src="`https://localhost:5001/images/banners/kygo-banner.jpg`" class="d-block w-100" alt="banner">
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" data-bs-interval="3000">
           <img :src="`https://localhost:5001/images/banners/seeb-banner.jpg`" class="d-block w-100" alt="banner">
         </div>
       </div>

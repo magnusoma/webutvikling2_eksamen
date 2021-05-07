@@ -40,7 +40,7 @@ export default {
         email: String,
         description: String,
         genre: String,
-        price: Number,
+        price: String,
         eventType: String,
         address: String,
         date: String,
