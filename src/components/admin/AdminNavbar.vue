@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ul class="row">
-      <li class="col"><router-link to="/admin">Musikkere</router-link></li>
-      <li class="col"><router-link to="/admin/job">Oppdrag</router-link></li>
+    <ul class="row justify-content-center">
+      <li><router-link class="col btn btn-danger" to="/admin">Administrer Musikere</router-link></li>
+      <li><router-link class="col btn btn-danger" to="/admin/job">Administrer Oppdrag</router-link></li>
     </ul>
   </div>
 </template>
@@ -22,10 +22,14 @@ export default {
 
 li {
   list-style-type: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: rgb(0, 0, 0);
 }
 
 a{
     text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(0, 0, 0);
 }
 
 </style>

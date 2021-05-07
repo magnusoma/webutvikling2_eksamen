@@ -1,26 +1,42 @@
 <template>
     <form>
-        <label for="artistName">Artist Name </label>
-        <input type="text" id="artistName" v-model="newArtist.artistName">
+        <div class="form-group">
+        <label for="artistName">Artist navn: </label>
+        <input class="form-control m-2" type="text" id="artistName" v-model="newArtist.artistName">
+        </div>
 
-        <label for="image-upload">Velg bilde</label>
+        <div class="form-group">
+        <label for="image-upload">Velg bilde:</label>
         <input @change="setImage" type="file" id="image-upload">
-
-        <label for="instrument">Instrument </label>
-        <select id="instrument" v-model="newArtist.instrument">
+        </div>
+        
+        <div class="form-group">
+        <label for="instrument">Instrument: </label>
+        <select class="btn btn-primary dropdown-toggle m-2" id="instrument" v-model="newArtist.instrument">
             <option value="Vokalist">Vokalist</option>
             <option value="Gitarist">Gitarist</option>
-            <option value="Pianoist">Pianoist</option>
+            <option value="Pianist">Pianist</option>
+            <option value="DJ">DJ</option>
+            <option value="Trommeslager">Trommeslager</option>
+            <option value="Tuba">Tuba</option>
+            <option value="Trompet">Trompet</option>
+            <option value="Fløyte">Fløyte</option>
         </select>
-
-        <label for="bio">Biografi</label>
-        <textarea id="bio" cols="30" rows="10" v-model="newArtist.bio"></textarea>
-
-        <label for="price">Pris per time</label>
-        <input type="number" id="price" v-model="newArtist.price">
-
+        </div>
+        
+        <div class="form-group">
+        <label for="bio">Biografi:</label>
+        <textarea class="form-control m-2" id="bio" cols="30" rows="10" v-model="newArtist.bio"></textarea>
+        </div>
+        
+        <div class="form-group">
+        <label for="price">Pris per time:</label>
+        <input class="form-control m-2" type="number" id="price" v-model="newArtist.price">
         <!--Calling uploadArtist method passing artist object and image as argument-->
-        <input type="button" class="btn btn-dark" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
+        <input type="button" class="btn btn-primary m-2" value="Legg til" @click="uploadArtist( newArtist, getImageData() )">
+        </div>
+        
+        
     </form>
 </template>
 
@@ -65,3 +81,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+label{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(0, 0, 0);
+    
+}
+</style>

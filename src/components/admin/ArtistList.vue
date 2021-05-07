@@ -1,14 +1,13 @@
 <template>
 
     <section>
-
+       
         <input 
-            type="button" 
-            class="btn btn-dark" 
-            value="Legg til ny musikker" 
+            type="button justify-content-center" 
+            class="btn btn-primary mb-3" 
+            value="Legg til ny musiker" 
             @click="renderUploadWindow = true"
         >
-
 
         <!--Popup window to upload artist-->
         <upload-artist
@@ -26,7 +25,8 @@
         :closeDeleteWindow="closeDeleteWindow"
         :deleteArtist="deleteArtist"
         />
-
+   <div class="container">
+    <div class="row">
         <artist-list-item
         v-for="artist in artists"
         :key="artist.artistId"
@@ -40,9 +40,11 @@
         :openDeleteWindow="openDeleteWindow"
         />
 
+    </div>
+
         
                 
-           
+    </div>       
     </section>
 
 </template>

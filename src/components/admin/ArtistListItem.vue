@@ -1,12 +1,17 @@
 <template>
-    <article>
-        <router-link :to="`/admin/${artistId}`">{{ artistName }}</router-link>
-        <p>{{ price }}kr</p>
-        <p>{{ instrument }}</p>
-        <p>{{ upVotes }}</p>
-        <p>{{ downVotes }}</p>
-        <!--Delete button to open confirmation window and passing artistId as argument-->
-        <input type="button" class="btn btn-dark" value="Slett Musikker" @click="openDeleteWindow(artistId)">
+
+    <article class="card-group col-md-6 col-lg-4 col-xl-3">
+        <div class="card border-dark border-2 mb-3">
+            <div class="card-body">
+                <router-link id="artist" class="card-title" :to="`/admin/${artistId}`">{{ artistName }}</router-link>
+                <p class="card-title">{{ price }}kr</p>
+                <p class="card-title">{{ instrument }}</p>
+                <p class="card-title">{{ upVotes }}</p>
+                <p class="card-title">{{ downVotes }}</p>
+                <!--Delete button to open confirmation window and passing artistId as argument-->
+                <input type="button" class="btn btn-danger" value="Slett Musiker" @click="openDeleteWindow(artistId)">
+            </div>
+        </div>
     </article>
 </template>
 
@@ -40,7 +45,12 @@ export default {
 </script>
 
 <style scoped>
-p{
+p, li{
     font-family: 'Roboto Condensed', sans-serif;
+   
+}
+#artist {
+font-family: 'Roboto Condensed', sans-serif;
+    text-decoration: none;
 }
 </style>
