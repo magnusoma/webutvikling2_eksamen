@@ -1,4 +1,5 @@
 <template>
+  <div class="container p-3">
     <input 
         type="button"
         :class="editBtnClass" 
@@ -8,7 +9,7 @@
     
     <input 
         type="button" 
-        class="btn btn-success"
+        class="btn btn-success m-3"
         v-if="editMode" value="Lagre endringer" 
         v-on:click="updateArtist"
     >
@@ -26,6 +27,7 @@
         :setArtistChanges="setArtistChanges"
         :setNewImage="setNewImage"
     />
+  </div>  
 </template>
 
 <script>

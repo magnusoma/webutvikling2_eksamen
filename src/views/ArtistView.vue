@@ -1,7 +1,7 @@
 <template>
     <!--Conditional rendering to make sure artist is initialized-->
     <div 
-        class="row align-items-center"
+        class="row align-items-center p-3"
         v-if="artistIsInitialized"
     >
         <div class="row d-flex justify-content-center">
