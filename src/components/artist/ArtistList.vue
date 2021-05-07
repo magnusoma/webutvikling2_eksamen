@@ -5,7 +5,7 @@
         :filterArtist="filterArtist"
         :setFilter="setFilter"
     />
-    <section v-if="pageLoaded" class="container">
+    <section v-if="pageLoaded" class="container mt-4">
         <div class="row">
         <artist-list-item
             v-for="artist in artistList" 
