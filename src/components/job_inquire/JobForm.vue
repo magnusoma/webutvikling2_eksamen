@@ -1,5 +1,5 @@
 <template>
-    <form class="row m-4" v-show="!postSuccess">
+    <form @submit.prevent="postInquire" class="row m-4" v-show="!postSuccess">
         <div class="col-md-6">
             <label for="first-name-input" class="form-label">Fornavn:</label>
             <input v-model="jobInquire.customerFirstName" type="text" class="form-control" id="first-name-input" required>
@@ -17,7 +17,7 @@
             <input v-model="jobInquire.customerTlf" type="text" class="form-control" id="tlf-input" required>
         </div>
         <div class="col-md-6">
-            <label for="genre-select">Type arrangement:</label>
+            <label class="m-2" for="genre-select">Type arrangement:</label>
             <select v-model="jobInquire.eventType" name="type" id="eventtype-select" required>
                 <option value="null" disabled>Velg...</option>
                 <option value="Fest">Fest</option>
@@ -28,7 +28,7 @@
             </select>   
         </div>
         <div class="col-md-6">
-            <label for="genre-select">Ønsket sjanger:</label>
+            <label class="m-2" for="genre-select">Ønsket sjanger:</label>
             <select v-model="jobInquire.genre" name="genre" id="genre-select" required>
                 <option value="null" disabled>Velg...</option>
                 <option value="Rock">Rock</option>
@@ -42,18 +42,20 @@
             <textarea v-model="jobInquire.description" id="description-textarea" cols="30" rows="10"></textarea>
         </div>
         <div class="col-md-4">
-            <label for="price-input" class="form-label">Ønsket pris:</label>
-            <input v-model="jobInquire.price" type="text" class="form-control" id="price-input" required>
+            <label for="price-input" class="m-2 form-label">Ønsket pris:</label>
+            <input v-model="jobInquire.price" type="text" id="price-input" required>
         </div>
         <div class="col-md-4">
-            <label for="datepicker">Arrangement dato:</label>
+            <label class="m-2" for="datepicker">Arrangement dato:</label>
             <input v-model="jobInquire.date" type="date" id="datepicker" required>
         </div>
         <div class="col-md-4">
-            <label for="job-address">Adresse for arrangement:</label>
+            <label class="m-2" for="job-address">Adresse for arrangement:</label>
             <input v-model="jobInquire.jobAddress" type="text" id="job-address" required>
-        </div>  
-        <button type="button" @click="postInquire" class="btn btn-primary col-md-12 ">Send inn</button>
+        </div>
+        <div class="col align-self-center mt-3">
+            <input type="submit" class="btn btn-primary align-self-center" value="Send inn">
+        </div>
     </form>
     <post-success v-if="postSuccess"/>
 </template>
@@ -71,16 +73,16 @@ export default {
     setup() {
         let postSuccess = ref(false);
         let jobInquire = reactive({
-            customerEmail: "opkpoek@gmail.com",
-            customerFirstName: "Petter",
-            customerLastName: "Wibstad",
-            customerTlf: "324234432",
-            description: "kpodeksop kdpoo epkpoe kpak opskpkcspo kopspokspokckpos",
-            genre: "Pop",
-            jobAddress: "HK",
-            eventType: "Bursdag",
-            price: "3211",
-            date:"2021-02-22",
+            customerEmail: "",
+            customerFirstName: "",
+            customerLastName: "",
+            customerTlf: "",
+            description: "",
+            genre: "",
+            jobAddress: "",
+            eventType: "",
+            price: "",
+            date:"",
             isFinished: false
         });
 
@@ -90,13 +92,11 @@ export default {
 
     methods: {
         postInquire() {
-            console.log("Run");
             axios.post("https://localhost:5001/job", this.jobInquire)
                 .then(response => {
                     response;
                 })
                 .then( () => {
-                    console.log("Success");
                     this.postSuccess = true;
                 })
         }

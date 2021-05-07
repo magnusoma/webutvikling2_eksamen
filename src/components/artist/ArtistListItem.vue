@@ -1,29 +1,31 @@
 <template>
-    <article class="card border-0 col-lg-4 col-mg-4 col-sm-4 pt-4 px-4">
-        
-            
+    <article class="card border-0 col-lg-4 col-md-6 col-sm-12">
         <div class="card-body">
             <router-link :to="{name: 'ArtistView', params:  {
             id: artist.artistId}}">
-             <img class="artist-image card-img-top" :src="`https://localhost:5001/images/artist_images/${artist.image}`">
-            <h3>{{artist.artistName}}</h3>
+                <img class="artist-image card-img-top" :src="`https://localhost:5001/images/artist_images/${artist.image}`">
+                <h3>{{artist.artistName}}</h3>
             </router-link>
-
-            <!--Like and dislike buttons-->
-            <!--Classes is assigned to provide colors if a button have been clicked-->
-            <i
-                class="fas fa-thumbs-up"
-                :class="{ 'text-success' : getVoteObj().alreadyUpVoted}"
-                @click="upVoteArtist"
-            />
-            <p>{{ artist.upVote }}</p>
-
-            <i 
-                class="fas fa-thumbs-down"                
-                :class="{ 'text-danger' : getVoteObj().alreadyDownVoted}"
-                @click="downVoteArtist"
-            />
-            <p>{{ artist.downVote }}</p>
+            <div class="flex-row d-flex">
+                <!--Like and dislike buttons-->
+                <!--Classes is assigned to provide colors if a button have been clicked-->
+                <div class="flex-fill">
+                    <i
+                        class="fas fa-thumbs-up"
+                        :class="{ 'text-success' : getVoteObj().alreadyUpVoted}"
+                        @click="upVoteArtist"
+                    />
+                    <p>{{ artist.upVote }}</p>
+                </div>
+                <div class="flex-fill">
+                    <i 
+                        class="fas fa-thumbs-down"                
+                        :class="{ 'text-danger' : getVoteObj().alreadyDownVoted}"
+                        @click="downVoteArtist"
+                    />
+                    <p>{{ artist.downVote }}</p>
+                </div>
+            </div>
         </div>
     </article>
 </template>
