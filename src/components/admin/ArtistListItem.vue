@@ -1,15 +1,17 @@
 <template>
-
     <article class="card-group col-md-6 col-lg-4 col-xl-3">
-        <div class="card border-dark border-2 mb-3">
+        <div class="card border-1 mb-3">
             <div class="card-body">
-                <router-link id="artist" class="card-title display-5" :to="`/admin/${artistId}`">{{ artistName }}</router-link>
-                <p class="card-title h3">{{ price }}kr</p>
-                <p class="card-title h3">{{ instrument }}</p>
-                <p class="card-title">Upvotes:{{ upVotes }}</p>
-                <p class="card-title">Downvotes:{{ downVotes }}</p>
+                <h5 class="card-title">{{ artistName }}</h5>
+                <p class="card-subtitle text-muted">{{ instrument }}</p>
+                <p class="card-subtitle text-muted mb-4">kr. {{ price }} per time</p>
+                <p class="card-text">Antall positive vurderinger: {{ upVotes }}</p>
+                <p class="card-text">Antall negative vurderinger: {{ downVotes }}</p>
                 <!--Delete button to open confirmation window and passing artistId as argument-->
-                <input type="button" class="btn btn-danger" value="Slett Musiker" @click="openDeleteWindow(artistId)">
+                <router-link id="artist" :to="`/admin/${artistId}`">
+                    <input type="button" class="btn btn-outline-info m-2" value="Endre musiker">
+                </router-link>
+                <input type="button" class="btn btn-outline-danger m-2" value="Slett musiker" @click="openDeleteWindow(artistId)">
             </div>
         </div>
     </article>

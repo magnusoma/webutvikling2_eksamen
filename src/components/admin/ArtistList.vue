@@ -4,7 +4,7 @@
        
         <input 
             type="button justify-content-center" 
-            class="btn btn-primary mb-3" 
+            class="btn btn-outline-primary mb-3" 
             value="Legg til ny musiker" 
             @click="renderUploadWindow = true"
         >
@@ -40,10 +40,7 @@
         :openDeleteWindow="openDeleteWindow"
         />
 
-    </div>
-
-        
-                
+    </div>       
     </div>       
     </section>
 
