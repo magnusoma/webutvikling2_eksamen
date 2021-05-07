@@ -8,6 +8,7 @@
         <div class="form-group">
             <label for="image-upload">Velg bilde:</label>
             <input @change="setImage" type="file" id="image-upload" required>
+            <img class="w-100 p-1" :src="imgSrc" :alt="newArtist.artistName">
         </div>
         
         <div class="form-group">
@@ -39,7 +40,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 
 export default {
     name: 'UploadArtistForm',
@@ -55,16 +56,19 @@ export default {
         });
         
         let data = new FormData();
+        let imgSrc = ref('#');
 
         return {
             newArtist,
-            data
+            data,
+            imgSrc
         }
     },
     methods: {
         //Append image to Form Data object and image name to artist object
         setImage( e ) {
             this.data.append("file", e.target.files[0]);
+            this.imgSrc = URL.createObjectURL(e.target.files[0]);
             this.newArtist.image = e.target.files[0].name;
         },
         //Getting form data containing image file
