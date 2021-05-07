@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <ul class="row justify-content-center">
-      <li><router-link class="col btn btn-danger" to="/admin">Administrer Musikere</router-link></li>
-      <li><router-link class="col btn btn-danger" to="/admin/job">Administrer Oppdrag</router-link></li>
-    </ul>
+  <div class="btn-group m-4" role="group">
+    <router-link class="btn btn-outline-secondary" to="/admin">Administrer Musikere</router-link>
+    <router-link class="btn btn-outline-secondary" to="/admin/job">Administrer Oppdrag</router-link>
   </div>
 </template>
 
 <script>
+
+
 export default {
     name: 'AdminNavbar',
     setup() {
         
-    },components: {
-
     }
 }
 </script>
