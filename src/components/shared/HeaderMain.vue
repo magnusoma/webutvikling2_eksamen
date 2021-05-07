@@ -19,16 +19,13 @@ h1{
     font-size: 2em;
     padding: 10px;
 }
-body{
-    margin: 0;
-    padding: 0;
-}
 
 nav {
     position: sticky;
     top: 0;
+    margin: 0;
     width: 100vw;
-    z-index: 2;
+    z-index: 3;
     background-color: #332C33;
 }
 

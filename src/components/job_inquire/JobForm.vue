@@ -1,5 +1,5 @@
 <template>
-    <form :action="postInquire" class="row g-3" v-show="!postSuccess">
+    <form class="row m-4" v-show="!postSuccess">
         <div class="col-md-6">
             <label for="first-name-input" class="form-label">Fornavn:</label>
             <input v-model="jobInquire.customerFirstName" type="text" class="form-control" id="first-name-input" required>
@@ -37,7 +37,7 @@
                 <option value="Rap">Rap</option>
             </select>
         </div>
-        <div id="description-container" class="col-md-12">
+        <div id="description-container" class="col-md-12 mt-1">
             <label for="description-textarea">Fortell oss mer om arrangementet:</label>
             <textarea v-model="jobInquire.description" id="description-textarea" cols="30" rows="10"></textarea>
         </div>
@@ -53,7 +53,7 @@
             <label for="job-address">Adresse for arrangement:</label>
             <input v-model="jobInquire.jobAddress" type="text" id="job-address" required>
         </div>  
-        <input type="submit" class="btn btn-primary col-md-12 " value="Send inn">
+        <button type="button" @click="postInquire" class="btn btn-primary col-md-12 ">Send inn</button>
     </form>
     <post-success v-if="postSuccess"/>
 </template>
@@ -71,31 +71,36 @@ export default {
     setup() {
         let postSuccess = ref(false);
         let jobInquire = reactive({
-            customerEmail: "",
-            customerFirstName: "",
-            customerLastName: "",
-            customerTlf: "",
-            description: "",
-            genre: "null",
-            jobAddress: "",
-            eventType: "null",
-            price: "",
-            date:""
+            customerEmail: "opkpoek@gmail.com",
+            customerFirstName: "Petter",
+            customerLastName: "Wibstad",
+            customerTlf: "324234432",
+            description: "kpodeksop kdpoo epkpoe kpak opskpkcspo kopspokspokckpos",
+            genre: "Pop",
+            jobAddress: "HK",
+            eventType: "Bursdag",
+            price: "3211",
+            date:"2021-02-22",
+            isFinished: false
         });
 
-        const postInquire = () => {
-            axios.post("https://localhost:5001/job", jobInquire)
-                .then(response => {
-                    if(response.data) {
-                        postSuccess.value = true;
-
-                    }
-                })
-        }
-
-        return {jobInquire, postInquire, postSuccess}
+        return {jobInquire, postSuccess}
         
     },
+
+    methods: {
+        postInquire() {
+            console.log("Run");
+            axios.post("https://localhost:5001/job", this.jobInquire)
+                .then(response => {
+                    response;
+                })
+                .then( () => {
+                    console.log("Success");
+                    this.postSuccess = true;
+                })
+        }
+    }
 }
 </script>
 

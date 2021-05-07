@@ -1,9 +1,11 @@
 <template>
     <article class="card border-0 col-lg-4 col-mg-4 col-sm-4 pt-4 px-4">
-        <img class="artist-image card-img-top" :src="`https://localhost:5001/images/artist_images/${artist.image}`">
+        
+            
         <div class="card-body">
-             <router-link :to="{name: 'ArtistView', params:  {
+            <router-link :to="{name: 'ArtistView', params:  {
             id: artist.artistId}}">
+             <img class="artist-image card-img-top" :src="`https://localhost:5001/images/artist_images/${artist.image}`">
             <h3>{{artist.artistName}}</h3>
             </router-link>
 
